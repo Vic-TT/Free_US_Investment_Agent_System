@@ -349,6 +349,7 @@ poetry run python src/backtester.py --ticker TSLA --start-date 2024-12-10 --end-
 - 💡 一对一答疑解惑
 
 <img src="src/img/planet.jpg" alt="知识星球二维码" width="200"/>
+❗❗ 为防止苹果收取手续费，苹果用户请添加我的QQ加入星球，QQ: 2262532773
 
 ## 🙏 致谢
 
