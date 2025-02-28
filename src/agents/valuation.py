@@ -4,6 +4,7 @@ import json
 
 def valuation_agent(state: AgentState):
     """Performs detailed valuation analysis using multiple methodologies."""
+
     show_reasoning = state["metadata"]["show_reasoning"]
     data = state["data"]
     metrics = data["financial_metrics"][0]
@@ -35,11 +36,16 @@ def valuation_agent(state: AgentState):
         terminal_growth_rate=0.03,
         num_years=5,
     )
-    
+
     # Calculate combined valuation gap (average of both methods)
-    dcf_gap = (dcf_value - market_cap) / market_cap
-    owner_earnings_gap = (owner_earnings_value - market_cap) / market_cap
-    valuation_gap = (dcf_gap + owner_earnings_gap) / 2
+    try:
+        dcf_gap = (dcf_value - market_cap) / market_cap
+        owner_earnings_gap = (owner_earnings_value - market_cap) / market_cap
+        valuation_gap = (dcf_gap + owner_earnings_gap) / 2
+    except Exception as e:
+        dcf_gap = 0.0
+        owner_earnings_gap = 0.0
+        valuation_gap = 0.0
 
     if valuation_gap > 0.15:  # More than 15% undervalued
         signal = 'bullish'

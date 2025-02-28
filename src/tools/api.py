@@ -98,6 +98,8 @@ def get_financial_statements(ticker: str) -> Dict[str, Any]:
 
     try:
         financials = stock.financials  # 获取所有财务数据
+        if financials.empty:
+            raise ValueError("No financial data available")
         cash_flow = stock.cashflow     # 获取所有现金流数据
         balance = stock.balance_sheet  # 获取所有资产负债表数据
 
